@@ -31,7 +31,7 @@ for (( i=2;i<=5;i++ ))
 do
         for(( j=$i;j<=5;j++ ))
         do
-                if [ ${array[i]} -lt ${array[j]} ]
+                if [ ${array[i]} -gt ${array[j]} ]
                 then
                         temp=${array[i]};
                         array[$i]=${array[$j]}
@@ -40,7 +40,7 @@ do
         done
 done
 
-echo "Result in Desecnding Order is"
+echo "Result in Ascending Order is"
 
 for(( i=2;i<=5;i++ ))
 do
