@@ -68,6 +68,73 @@ function checkPosition()
     esac
 }
 
+function checkPosition1()
+{
+    case $Position1 in
+   4)
+       newPosition1=35
+       ;;
+
+   7)
+       newPosition1=23
+       ;;
+
+   9)
+       newPosition1=5
+       ;;
+
+   14)
+       newPosition1=43
+       ;;
+
+   17)
+       newPosition1=13
+       ;;
+
+   21)
+       newPosition1=3
+       ;;
+
+   24)
+       newPosition1=85
+       ;;
+
+   27)
+       newPosition1=47
+       ;;
+	34)
+       newPosition1=20
+       ;;
+
+   42)
+       newPosition1=11
+       ;;
+
+   56)
+       newPosition1=98
+       ;;
+
+   79)
+       newPosition1=32
+       ;;
+
+   83)
+       newPosition1=2
+       ;;
+   70)
+      newPosition1=91
+      ;;
+   88)
+      newPosition1=50
+      ;;
+
+   *)
+       newPosition1=$Position1
+       ;;
+    esac
+}
+
+
 printf "Would you like to:\n    1)Read the rules\n    2)Play the game\n\n"
 read choice
 
@@ -90,9 +157,11 @@ then
     printf " 20  19  18  17  16  15  14  13  12  11        	21=Snake  to 3     70=Ladder to 91\n"
     printf " 1	  2   3	 4   5   6   7   8   9   10   		24=Ladder to 85    88=Snake  to 50 \n "
 count=0;
-while((Position < 100))
+
+while((Position < 100 || Position1 < 100))
 do
 	((count++))
+	echo "Player 1 turn ............................................................."
 	echo -e "\n\nPlease press enter to roll\n\n"
 	read ch
 
@@ -123,10 +192,45 @@ do
    fi
    if ((Position==100))
       then
-         echo -e "\nCongratulations, you won"
+         echo -e "\nCongratulations Player 1 , you won"
    fi
 Position=$newPosition # Position after every die roll
+
+
+	echo "Player 2 turn ........................................................."
+   echo -e "\n\nPlease press enter to roll\n\n"
+   read ch1
+
+   dice1=$(( 1 + RANDOM % 6 ))
+
+   echo -e "\nYou have rolled a $dice1.\n"
+
+    Position1=$((Position1+dice1))
+
+   if (($Position1 > 100))
+       then
+         above1=$((Position1-100))
+         Position1=$((100-above1))
+   fi
+
+   echo -e "\nYou have landed on space $Position.\n"
+
+   checkPosition1
+
+   if ((Position1 < newPosition1))
+         then
+            echo -e "\nWell done, you have landed on a ladder. You are now on space $newPosition."
+   fi
+
+   if ((Position1 > newPosition1))
+         then
+            echo -e "\nUnlucky, you have landed on a snake. You are now on space $newPosition."
+   fi
+   if ((Position1==100))
+      then
+         echo -e "\nCongratulations Player 2, you won"
+   fi
+Position1=$newPosition1 # Position after every die roll
 done
-echo "No of times the dice was played to win is" $count
 fi
 
