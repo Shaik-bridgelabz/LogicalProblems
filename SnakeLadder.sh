@@ -1,5 +1,6 @@
 #!/bin/bash -x
 
+
 printf "Would you like to:\n    1)Read the rules\n    2)Play the game\n\n"
 read choice
 
@@ -7,7 +8,7 @@ if ((choice == 1))
 then
     printf "\nThe rules are simple: \n   You press enter to roll the die\n   You are then told which space you have landed on\n   If you land on a snake you will move down the board\n   If you land on a ladder then you will move up it\n   In order to win you must land on 100 exactly\n   \n\n Good Luck\n\n"
 fi
-  
+
 if ((choice == 2))
 then
     printf "\nWelcome to Snakes and Ladders.\n\n\n"
@@ -21,4 +22,14 @@ then
     printf " 21  22  23  24  25  26  27  28  29  30      	17=Snake  to 13    83=Snake  to 2\n"
     printf " 20  19  18  17  16  15  14  13  12  11        	21=Snake  to 3     70=Ladder to 91\n"
     printf " 1	  2   3	 4   5   6   7   8   9   10   		24=Ladder to 85    88=Snake  to 50 \n "
+
+
+	echo -e "\n\nPlease press enter to roll\n\n"
+	read ch
+
+	dice=$(( 1 + RANDOM % 6 ))
+
+	echo -e "\nYou have rolled a $dice.\n"
+
 fi
+
