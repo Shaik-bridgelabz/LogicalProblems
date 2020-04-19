@@ -90,7 +90,8 @@ then
     printf " 20  19  18  17  16  15  14  13  12  11        	21=Snake  to 3     70=Ladder to 91\n"
     printf " 1	  2   3	 4   5   6   7   8   9   10   		24=Ladder to 85    88=Snake  to 50 \n "
 
-
+while((Position < 100))
+do
 	echo -e "\n\nPlease press enter to roll\n\n"
 	read ch
 
@@ -124,5 +125,6 @@ then
          echo -e "\nCongratulations, you won"
    fi
 Position=$newPosition
+done
 fi
 
