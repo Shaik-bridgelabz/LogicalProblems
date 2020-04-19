@@ -89,9 +89,10 @@ then
     printf " 21  22  23  24  25  26  27  28  29  30      	17=Snake  to 13    83=Snake  to 2\n"
     printf " 20  19  18  17  16  15  14  13  12  11        	21=Snake  to 3     70=Ladder to 91\n"
     printf " 1	  2   3	 4   5   6   7   8   9   10   		24=Ladder to 85    88=Snake  to 50 \n "
-
+count=0;
 while((Position < 100))
 do
+	((count++))
 	echo -e "\n\nPlease press enter to roll\n\n"
 	read ch
 
@@ -124,7 +125,8 @@ do
       then
          echo -e "\nCongratulations, you won"
    fi
-Position=$newPosition
+Position=$newPosition # Position after every die roll
 done
+echo "No of times the dice was played to win is" $count
 fi
 
