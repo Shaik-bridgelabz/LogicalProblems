@@ -1,5 +1,72 @@
 #!/bin/bash -x
 
+function checkPosition()
+{
+    case $Position in
+   4)
+       newPosition=35
+       ;;
+
+   7)
+       newPosition=23
+       ;;
+
+   9)
+       newPosition=5
+       ;;
+
+   14)
+       newPosition=43
+       ;;
+
+   17)
+       newPosition=13
+       ;;
+
+   21)
+       newPosition=3
+       ;;
+
+   24)
+       newPosition=85
+       ;;
+
+   27)
+       newPosition=47
+       ;;
+
+
+   34)
+       newPosition=20
+       ;;
+
+   42)
+       newPosition=11
+       ;;
+
+   56)
+       newPosition=98
+       ;;
+
+   79)
+       newPosition=32
+       ;;
+
+   83)
+       newPosition=2
+       ;;
+   70)
+      newPosition=91
+      ;;
+   88)
+      newPosition=50
+      ;;
+
+   *)
+       newPosition=$Position
+       ;;
+    esac
+}
 
 printf "Would you like to:\n    1)Read the rules\n    2)Play the game\n\n"
 read choice
@@ -31,5 +98,31 @@ then
 
 	echo -e "\nYou have rolled a $dice.\n"
 
+	 Position=$((Position+dice))
+
+   if (($Position > 100))
+       then
+         above=$((Position-100))
+         Position=$((100-above))
+   fi
+
+   echo -e "\nYou have landed on space $Position.\n"
+
+   checkPosition
+
+   if ((Position < newPosition))
+         then
+            echo -e "\nWell done, you have landed on a ladder. You are now on space $newPosition."
+   fi
+
+   if ((Position > newPosition))
+         then
+            echo -e "\nUnlucky, you have landed on a snake. You are now on space $newPosition."
+   fi
+   if ((Position==100))
+      then
+         echo -e "\nCongratulations, you won"
+   fi
+Position=$newPosition
 fi
 
