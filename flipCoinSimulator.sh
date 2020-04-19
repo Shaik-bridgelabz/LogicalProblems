@@ -1,6 +1,6 @@
 #!/bin/bash -x
 read -p "Enter how many times to flip " flips
-coins=2; #for creating doublet
+coins=3; #for creating triplet
 
 declare -A flipstore
 heads=0;
