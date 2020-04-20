@@ -17,8 +17,10 @@ do
 		value=$(( RANDOM % 2 ))
 		if [ $value -eq 1 ]
 			then
+				noOfWins=$(($noOfWins+1));
 				stake=$(( $stake + 1 )); #won
 			else
+				noOfLoss=$(($noOfLoss+1));
 				stake=$(( $stake - 1 )); #lost
 		fi
 	done
@@ -32,9 +34,18 @@ do
 			echo "U have lost 50% of stake, u should resign for the day"
 			echo "Stake after Loosing is "$stake
 	fi
+	win[$days]=$noOfWins;
+	loss[$days]=$noOfLoss;
 	echo "No of Days won is $dayWin"
 	echo "No of days loss is $dayLoss"
 	total=$(( $total + $stake ))
 	totalAmount["$stake"]=$total
+
+	if [ $noOfWins -gt $noOfLoss ]
+	then
+		echo "Play Next Month"
+	else
+		echo "Dont Play Next Month"
+	fi
 done
 	echo ${totalAmount[@]}
